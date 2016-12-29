@@ -54,11 +54,10 @@ class FileReader extends AbstractReader
     {
         $reader = new XMLReader();
 
-        if (true !== ($code = $reader->open($this->file, null, $this->flags))) {
+        if (!$reader->open($this->file, null, $this->flags)) {
             throw new CouldNotOpenException(
-                'The XML file "%s" could not be opened (code: %d).',
-                $this->file,
-                $code
+                'The XML file "%s" could not be opened.',
+                $this->file
             );
         }
 

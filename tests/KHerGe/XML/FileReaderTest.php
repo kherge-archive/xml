@@ -2,9 +2,11 @@
 
 namespace Test\KHerGe\XML;
 
+use KHerGe\XML\Exception\Reader\CouldNotOpenException;
 use KHerGe\XML\FileReader;
 use KHerGe\XML\Node\NodeBuilderFactory;
 use KHerGe\XML\Node\PathBuilderFactory;
+use PHPUnit_Framework_Error_Warning as Warning;
 use PHPUnit_Framework_TestCase as TestCase;
 
 use function KHerGe\File\remove;
@@ -54,6 +56,27 @@ class FileReaderTest extends TestCase
     }
 
     /**
+     * Verify that an exception is thrown when a file cannot be opened.
+     */
+    public function testThrowAnExceptionWhenAFileCannotBeOpened()
+    {
+        Warning::$enabled = false;
+
+        error_reporting(E_ERROR);
+
+        $this->expectException(CouldNotOpenException::class);
+
+        $this->reader = new FileReader(
+            '/this/file/should/not/exist.xml',
+            0,
+            new PathBuilderFactory(),
+            new NodeBuilderFactory()
+        );
+
+        $this->reader->rewind();
+    }
+
+    /**
      * Creates a new temporary XML file and reader.
      */
     protected function setUp()
@@ -75,6 +98,8 @@ class FileReaderTest extends TestCase
      */
     protected function tearDown()
     {
+        error_reporting(E_ALL | E_STRICT);
+
         $this->reader = null;
 
         remove($this->file);
