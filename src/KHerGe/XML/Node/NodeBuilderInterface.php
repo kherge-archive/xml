@@ -5,9 +5,7 @@ namespace KHerGe\XML\Node;
 use KHerGe\XML\Exception\Node\Builder\MissingDepthException;
 use KHerGe\XML\Exception\Node\Builder\MissingLocalNameException;
 use KHerGe\XML\Exception\Node\Builder\MissingPositionException;
-use KHerGe\XML\Exception\Node\Builder\MissingPrefixException;
 use KHerGe\XML\Exception\Node\Builder\MissingTypeException;
-use KHerGe\XML\Exception\Node\Builder\MissingURIException;
 
 /**
  * Defines the public interface for a node builder.
@@ -28,9 +26,7 @@ interface NodeBuilderInterface
      * @throws MissingDepthException     If the depth is not set.
      * @throws MissingLocalNameException If the local name is not set.
      * @throws MissingPositionException  If the position is not set.
-     * @throws MissingPrefixException    If the namespace prefix is not set.
      * @throws MissingTypeException      If the type of the node is not set.
-     * @throws MissingURIException       If the namespace URI is not set.
      */
     public function build();
 
