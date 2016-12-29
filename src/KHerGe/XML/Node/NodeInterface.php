@@ -36,105 +36,105 @@ interface NodeInterface
      *
      * @var integer
      */
-    const TYPE_COMMENT = 3;
+    const TYPE_COMMENT = 4;
 
     /**
      * The node is the document node.
      *
      * @var integer
      */
-    const TYPE_DOCUMENT = 4;
+    const TYPE_DOCUMENT = 8;
 
     /**
      * The node is a document fragment.
      *
      * @var integer
      */
-    const TYPE_DOCUMENT_FRAGMENT = 5;
+    const TYPE_DOCUMENT_FRAGMENT = 16;
 
     /**
      * The node is a document type.
      *
      * @var integer
      */
-    const TYPE_DOCUMENT_TYPE = 6;
+    const TYPE_DOCUMENT_TYPE = 32;
 
     /**
      * The node is the end element.
      *
      * @var integer
      */
-    const TYPE_END_ELEMENT = 7;
+    const TYPE_END_ELEMENT = 64;
 
     /**
      * The node is the end entity.
      *
      * @var integer
      */
-    const TYPE_END_ENTITY = 8;
+    const TYPE_END_ENTITY = 128;
 
     /**
      * The node is an element.
      *
      * @var integer
      */
-    const TYPE_ELEMENT = 9;
+    const TYPE_ELEMENT = 256;
 
     /**
      * The node is an entity.
      *
      * @var integer
      */
-    const TYPE_ENTITY = 10;
+    const TYPE_ENTITY = 512;
 
     /**
      * The node is an entity reference.
      *
      * @var integer
      */
-    const TYPE_ENTITY_REFERENCE = 11;
+    const TYPE_ENTITY_REFERENCE = 1024;
 
     /**
      * The node is insignificant whitespace.
      *
      * @var integer
      */
-    const TYPE_INSIGNIFICANT_WHITESPACE = 12;
+    const TYPE_INSIGNIFICANT_WHITESPACE = 2048;
 
     /**
      * The node is a notation.
      *
      * @var integer
      */
-    const TYPE_NOTATION = 13;
+    const TYPE_NOTATION = 4096;
 
     /**
      * The node is a processing instruction.
      *
      * @var integer
      */
-    const TYPE_PROCESSING_INSTRUCTION = 14;
+    const TYPE_PROCESSING_INSTRUCTION = 8192;
 
     /**
      * The node is significant whitespace.
      *
      * @var integer
      */
-    const TYPE_SIGNIFICANT_WHITESPACE = 15;
+    const TYPE_SIGNIFICANT_WHITESPACE = 16384;
 
     /**
      * The node is text.
      *
      * @var integer
      */
-    const TYPE_TEXT = 16;
+    const TYPE_TEXT = 32768;
 
     /**
      * The node is an XML declaration.
      *
      * @var integer
      */
-    const TYPE_XML_DECLARATION = 17;
+    const TYPE_XML_DECLARATION = 65536;
 
     /**
      * Returns the value of an attribute for the node.

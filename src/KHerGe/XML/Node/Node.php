@@ -205,7 +205,7 @@ class Node implements NodeInterface
      */
     public function isAttribute()
     {
-        return (self::TYPE_ATTRIBUTE === $this->type);
+        return (0 !== (self::TYPE_ATTRIBUTE & $this->type));
     }
 
     /**
@@ -213,7 +213,7 @@ class Node implements NodeInterface
      */
     public function isCDATA()
     {
-        return (self::TYPE_CDATA === $this->type);
+        return (0 !== (self::TYPE_CDATA & $this->type));
     }
 
     /**
@@ -221,7 +221,7 @@ class Node implements NodeInterface
      */
     public function isComment()
     {
-        return (self::TYPE_COMMENT === $this->type);
+        return (0 !== (self::TYPE_COMMENT & $this->type));
     }
 
     /**
@@ -229,7 +229,7 @@ class Node implements NodeInterface
      */
     public function isDocument()
     {
-        return (self::TYPE_DOCUMENT === $this->type);
+        return (0 !== (self::TYPE_DOCUMENT & $this->type));
     }
 
     /**
@@ -237,7 +237,7 @@ class Node implements NodeInterface
      */
     public function isDocumentFragment()
     {
-        return (self::TYPE_DOCUMENT_FRAGMENT === $this->type);
+        return (0 !== (self::TYPE_DOCUMENT_FRAGMENT & $this->type));
     }
 
     /**
@@ -245,7 +245,7 @@ class Node implements NodeInterface
      */
     public function isDocumentType()
     {
-        return (self::TYPE_DOCUMENT_TYPE === $this->type);
+        return (0 !== (self::TYPE_DOCUMENT_TYPE & $this->type));
     }
 
     /**
@@ -253,8 +253,8 @@ class Node implements NodeInterface
      */
     public function isElement()
     {
-        return (self::TYPE_END_ELEMENT === $this->type)
-            || (self::TYPE_ELEMENT === $this->type);
+        return (0 !== (self::TYPE_END_ELEMENT & $this->type))
+            || (0 !== (self::TYPE_ELEMENT & $this->type));
     }
 
     /**
@@ -262,8 +262,8 @@ class Node implements NodeInterface
      */
     public function isEnd()
     {
-        return (self::TYPE_END_ELEMENT === $this->type)
-            || (self::TYPE_END_ENTITY === $this->type);
+        return (0 !== (self::TYPE_END_ELEMENT & $this->type))
+            || (0 !== (self::TYPE_END_ENTITY & $this->type));
     }
 
     /**
@@ -271,8 +271,8 @@ class Node implements NodeInterface
      */
     public function isEntity()
     {
-        return (self::TYPE_END_ENTITY === $this->type)
-            || (self::TYPE_ENTITY === $this->type);
+        return (0 !== (self::TYPE_END_ENTITY & $this->type))
+            || (0 !== (self::TYPE_ENTITY & $this->type));
     }
 
     /**
@@ -280,7 +280,7 @@ class Node implements NodeInterface
      */
     public function isEntityReference()
     {
-        return (self::TYPE_ENTITY_REFERENCE === $this->type);
+        return (0 !== (self::TYPE_ENTITY_REFERENCE & $this->type));
     }
 
     /**
@@ -288,7 +288,7 @@ class Node implements NodeInterface
      */
     public function isInsignificantWhitespace()
     {
-        return (self::TYPE_INSIGNIFICANT_WHITESPACE === $this->type);
+        return (0 !== (self::TYPE_INSIGNIFICANT_WHITESPACE & $this->type));
     }
 
     /**
@@ -296,7 +296,7 @@ class Node implements NodeInterface
      */
     public function isNotation()
     {
-        return (self::TYPE_NOTATION === $this->type);
+        return (0 !== (self::TYPE_NOTATION & $this->type));
     }
 
     /**
@@ -304,7 +304,7 @@ class Node implements NodeInterface
      */
     public function isProcessingInstruction()
     {
-        return (self::TYPE_PROCESSING_INSTRUCTION === $this->type);
+        return (0 !== (self::TYPE_PROCESSING_INSTRUCTION & $this->type));
     }
 
     /**
@@ -312,7 +312,7 @@ class Node implements NodeInterface
      */
     public function isSignificantWhitespace()
     {
-        return (self::TYPE_SIGNIFICANT_WHITESPACE === $this->type);
+        return (0 !== (self::TYPE_SIGNIFICANT_WHITESPACE & $this->type));
     }
 
     /**
@@ -320,8 +320,8 @@ class Node implements NodeInterface
      */
     public function isStart()
     {
-        return (self::TYPE_ELEMENT === $this->type)
-            || (self::TYPE_ENTITY === $this->type);
+        return (0 !== (self::TYPE_ELEMENT & $this->type))
+            || (0 !== (self::TYPE_ENTITY & $this->type));
     }
 
     /**
@@ -329,7 +329,7 @@ class Node implements NodeInterface
      */
     public function isText()
     {
-        return (self::TYPE_TEXT === $this->type);
+        return (0 !== (self::TYPE_TEXT & $this->type));
     }
 
     /**
@@ -337,6 +337,6 @@ class Node implements NodeInterface
      */
     public function isXMLDeclaration()
     {
-        return (self::TYPE_XML_DECLARATION === $this->type);
+        return (0 !== (self::TYPE_XML_DECLARATION & $this->type));
     }
 }

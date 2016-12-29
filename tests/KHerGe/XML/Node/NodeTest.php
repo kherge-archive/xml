@@ -466,6 +466,39 @@ class NodeTest extends TestCase
     }
 
     /**
+     * Verify that the type of the node is mixed.
+     */
+    public function testTheNodeTypeIsMixed()
+    {
+        $this->node = new Node(
+            NodeInterface::TYPE_ELEMENT | NodeInterface::TYPE_END_ELEMENT,
+            $this->localName,
+            $this->value,
+            $this->position,
+            $this->depth,
+            $this->language,
+            $this->prefix,
+            $this->uri,
+            $this->attributes
+        );
+
+        self::assertTrue(
+            $this->node->isElement(),
+            'The node should be an element.'
+        );
+
+        self::assertTrue(
+            $this->node->isStart(),
+            'The node should also be a starting element.'
+        );
+
+        self::assertTrue(
+            $this->node->isEnd(),
+            'THe node should also be an ending element.'
+        );
+    }
+
+    /**
      * Creates a new node representation.
      */
     protected function setUp()
