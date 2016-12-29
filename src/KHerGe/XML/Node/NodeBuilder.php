@@ -5,9 +5,7 @@ namespace KHerGe\XML\Node;
 use KHerGe\XML\Exception\Node\Builder\MissingDepthException;
 use KHerGe\XML\Exception\Node\Builder\MissingLocalNameException;
 use KHerGe\XML\Exception\Node\Builder\MissingPositionException;
-use KHerGe\XML\Exception\Node\Builder\MissingPrefixException;
 use KHerGe\XML\Exception\Node\Builder\MissingTypeException;
-use KHerGe\XML\Exception\Node\Builder\MissingURIException;
 
 /**
  * Builds a new node using a fluent interface.
@@ -100,20 +98,8 @@ class NodeBuilder implements NodeBuilderInterface
             );
         }
 
-        if ((null !== $this->uri) && (null === $this->prefix)) {
-            throw new MissingPrefixException(
-                'The namespace URI is set, but the prefix is not set for the node.'
-            );
-        }
-
         if (null === $this->type) {
             throw new MissingTypeException('The type of the node was not set.');
-        }
-
-        if ((null === $this->uri) && (null !== $this->prefix)) {
-            throw new MissingURIException(
-                'The namespace prefix is set, but the namespace URI is not set for the node.'
-            );
         }
 
         return new Node(

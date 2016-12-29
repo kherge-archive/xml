@@ -5,9 +5,7 @@ namespace Test\KHerGe\XML\Node;
 use KHerGe\XML\Exception\Node\Builder\MissingDepthException;
 use KHerGe\XML\Exception\Node\Builder\MissingLocalNameException;
 use KHerGe\XML\Exception\Node\Builder\MissingPositionException;
-use KHerGe\XML\Exception\Node\Builder\MissingPrefixException;
 use KHerGe\XML\Exception\Node\Builder\MissingTypeException;
-use KHerGe\XML\Exception\Node\Builder\MissingURIException;
 use KHerGe\XML\Node\Node;
 use KHerGe\XML\Node\NodeBuilder;
 use KHerGe\XML\Node\NodeInterface;
@@ -206,37 +204,6 @@ class NodeBuilderTest extends TestCase
     }
 
     /**
-     * Verify that an exception is thrown if the namespace prefix is not set.
-     */
-    public function testThrowAnExceptionIfTheNamespacePrefixIsNotSet()
-    {
-        $attributes = ['a' => 'alpha', 'b' => 'beta', 'c' => 'gamma'];
-        $depth = 3;
-        $language = 'en';
-        $localName = 'test';
-        $name = 'd';
-        $position = 3;
-        $type = NodeInterface::TYPE_ELEMENT;
-        $uri = 'urn:kevin.herrera.io:test';
-        $value = 'delta';
-
-        $this->expectException(MissingPrefixException::class);
-
-        (new NodeBuilder())
-            ->setAttributes($attributes)
-            ->setAttribute($name, $value)
-            ->setDepth($depth)
-            ->setLanguage($language)
-            ->setLocalName($localName)
-            ->setPosition($position)
-            ->setType($type)
-            ->setURI($uri)
-            ->setValue($value)
-            ->build()
-        ;
-    }
-
-    /**
      * Verify that an exception is thrown if the node type is not set.
      */
     public function testThrowAnExceptionIfTheNodeTypeIsNotSet()
@@ -262,37 +229,6 @@ class NodeBuilderTest extends TestCase
             ->setPosition($position)
             ->setPrefix($prefix)
             ->setURI($uri)
-            ->setValue($value)
-            ->build()
-        ;
-    }
-
-    /**
-     * Verify that an exception is thrown if the node type is not set.
-     */
-    public function testThrowAnExceptionIfTheNamespaceUriIsNotSet()
-    {
-        $attributes = ['a' => 'alpha', 'b' => 'beta', 'c' => 'gamma'];
-        $depth = 3;
-        $language = 'en';
-        $localName = 'test';
-        $name = 'd';
-        $position = 3;
-        $prefix = 't';
-        $type = NodeInterface::TYPE_ELEMENT;
-        $value = 'delta';
-
-        $this->expectException(MissingURIException::class);
-
-        (new NodeBuilder())
-            ->setAttributes($attributes)
-            ->setAttribute($name, $value)
-            ->setDepth($depth)
-            ->setLanguage($language)
-            ->setLocalName($localName)
-            ->setPosition($position)
-            ->setPrefix($prefix)
-            ->setType($type)
             ->setValue($value)
             ->build()
         ;
