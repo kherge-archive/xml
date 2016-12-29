@@ -4,6 +4,7 @@ namespace Test\KHerGe\XML\Node;
 
 use KHerGe\XML\Exception\Node\Builder\MissingDepthException;
 use KHerGe\XML\Exception\Node\Builder\MissingLocalNameException;
+use KHerGe\XML\Exception\Node\Builder\MissingPositionException;
 use KHerGe\XML\Exception\Node\Builder\MissingPrefixException;
 use KHerGe\XML\Exception\Node\Builder\MissingTypeException;
 use KHerGe\XML\Exception\Node\Builder\MissingURIException;
@@ -31,6 +32,7 @@ class NodeBuilderTest extends TestCase
         $language = 'en';
         $localName = 'test';
         $name = 'd';
+        $position = 3;
         $prefix = 't';
         $type = NodeInterface::TYPE_ELEMENT;
         $uri = 'urn:kevin.herrera.io:test';
@@ -42,6 +44,7 @@ class NodeBuilderTest extends TestCase
             ->setDepth($depth)
             ->setLanguage($language)
             ->setLocalName($localName)
+            ->setPosition($position)
             ->setPrefix($prefix)
             ->setType($type)
             ->setURI($uri)
@@ -80,6 +83,12 @@ class NodeBuilderTest extends TestCase
         );
 
         self::assertEquals(
+            $position,
+            $node->getPosition(),
+            'The position was not set correctly.'
+        );
+
+        self::assertEquals(
             $prefix,
             $node->getPrefix(),
             'The namespace prefix was not set correctly.'
@@ -112,6 +121,7 @@ class NodeBuilderTest extends TestCase
         $language = 'en';
         $localName = 'test';
         $name = 'd';
+        $position = 3;
         $prefix = 't';
         $type = NodeInterface::TYPE_ELEMENT;
         $uri = 'urn:kevin.herrera.io:test';
@@ -124,6 +134,7 @@ class NodeBuilderTest extends TestCase
             ->setAttribute($name, $value)
             ->setLanguage($language)
             ->setLocalName($localName)
+            ->setPosition($position)
             ->setPrefix($prefix)
             ->setType($type)
             ->setURI($uri)
@@ -141,6 +152,7 @@ class NodeBuilderTest extends TestCase
         $depth = 3;
         $language = 'en';
         $name = 'd';
+        $position = 3;
         $prefix = 't';
         $type = NodeInterface::TYPE_ELEMENT;
         $uri = 'urn:kevin.herrera.io:test';
@@ -153,6 +165,38 @@ class NodeBuilderTest extends TestCase
             ->setAttribute($name, $value)
             ->setDepth($depth)
             ->setLanguage($language)
+            ->setPosition($position)
+            ->setPrefix($prefix)
+            ->setType($type)
+            ->setURI($uri)
+            ->setValue($value)
+            ->build()
+        ;
+    }
+
+    /**
+     * Verify that an exception is thrown if the position is not set.
+     */
+    public function testThrowAnExceptionIfThePositionIsNotSet()
+    {
+        $attributes = ['a' => 'alpha', 'b' => 'beta', 'c' => 'gamma'];
+        $depth = 3;
+        $language = 'en';
+        $localName = 'test';
+        $name = 'd';
+        $prefix = 't';
+        $type = NodeInterface::TYPE_ELEMENT;
+        $uri = 'urn:kevin.herrera.io:test';
+        $value = 'delta';
+
+        $this->expectException(MissingPositionException::class);
+
+        (new NodeBuilder())
+            ->setAttributes($attributes)
+            ->setAttribute($name, $value)
+            ->setDepth($depth)
+            ->setLanguage($language)
+            ->setLocalName($localName)
             ->setPrefix($prefix)
             ->setType($type)
             ->setURI($uri)
@@ -171,6 +215,7 @@ class NodeBuilderTest extends TestCase
         $language = 'en';
         $localName = 'test';
         $name = 'd';
+        $position = 3;
         $type = NodeInterface::TYPE_ELEMENT;
         $uri = 'urn:kevin.herrera.io:test';
         $value = 'delta';
@@ -183,6 +228,7 @@ class NodeBuilderTest extends TestCase
             ->setDepth($depth)
             ->setLanguage($language)
             ->setLocalName($localName)
+            ->setPosition($position)
             ->setType($type)
             ->setURI($uri)
             ->setValue($value)
@@ -200,6 +246,7 @@ class NodeBuilderTest extends TestCase
         $language = 'en';
         $localName = 'test';
         $name = 'd';
+        $position = 3;
         $prefix = 't';
         $uri = 'urn:kevin.herrera.io:test';
         $value = 'delta';
@@ -212,6 +259,7 @@ class NodeBuilderTest extends TestCase
             ->setDepth($depth)
             ->setLanguage($language)
             ->setLocalName($localName)
+            ->setPosition($position)
             ->setPrefix($prefix)
             ->setURI($uri)
             ->setValue($value)
@@ -229,6 +277,7 @@ class NodeBuilderTest extends TestCase
         $language = 'en';
         $localName = 'test';
         $name = 'd';
+        $position = 3;
         $prefix = 't';
         $type = NodeInterface::TYPE_ELEMENT;
         $value = 'delta';
@@ -241,6 +290,7 @@ class NodeBuilderTest extends TestCase
             ->setDepth($depth)
             ->setLanguage($language)
             ->setLocalName($localName)
+            ->setPosition($position)
             ->setPrefix($prefix)
             ->setType($type)
             ->setValue($value)

@@ -40,6 +40,13 @@ class Node implements NodeInterface
     private $localName;
 
     /**
+     * The position of the node relative to its siblings.
+     *
+     * @var integer
+     */
+    private $position;
+
+    /**
      * The namespace prefix.
      *
      * @var string
@@ -73,6 +80,7 @@ class Node implements NodeInterface
      * @param integer     $type       The type of the node.
      * @param string      $name       The local name of the node.
      * @param null|string $value      The value of the node.
+     * @param integer     $position   The position of the node.
      * @param integer     $depth      The depth of the node.
      * @param null|string $language   The language of the node.
      * @param null|string $prefix     The namespace prefix.
@@ -83,6 +91,7 @@ class Node implements NodeInterface
         $type,
         $name,
         $value,
+        $position,
         $depth,
         $language,
         $prefix,
@@ -93,6 +102,7 @@ class Node implements NodeInterface
         $this->depth = $depth;
         $this->language = $language;
         $this->localName = $name;
+        $this->position = $position;
         $this->prefix = $prefix;
         $this->type = $type;
         $this->uri = $uri;
@@ -144,6 +154,14 @@ class Node implements NodeInterface
     public function getLocalName()
     {
         return $this->localName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 
     /**

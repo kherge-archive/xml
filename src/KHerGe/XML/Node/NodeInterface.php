@@ -196,6 +196,17 @@ interface NodeInterface
     public function getLocalName();
 
     /**
+     * Returns the position of the node relative to its siblings.
+     *
+     * ```php
+     * $position = $node->getPosition();
+     * ```
+     *
+     * @return integer The position.
+     */
+    public function getPosition();
+
+    /**
      * Returns the prefix for the namespace.
      *
      * ```php

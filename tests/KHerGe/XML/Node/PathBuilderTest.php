@@ -137,6 +137,30 @@ class PathBuilderTest extends TestCase
     }
 
     /**
+     * Verify that the position of the current node is returned.
+     *
+     * @depends testVerifyThatThePathIsTrackedAndBuiltCorrectly
+     */
+    public function testGetThePositionOfTheCurrentNode()
+    {
+        self::assertNull(
+            $this->builder->getPosition(),
+            'There is no node to get a position on.'
+        );
+
+        $this->builder->push('root');
+        $this->builder->push('child');
+        $this->builder->pop();
+        $this->builder->push('child');
+
+        self::assertEquals(
+            2,
+            $this->builder->getPosition(),
+            'The expected position was not returned.'
+        );
+    }
+
+    /**
      * Creates a new path builder.
      */
     protected function setUp()

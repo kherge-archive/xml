@@ -51,6 +51,18 @@ class PathBuilder implements PathBuilderInterface
     /**
      * {@inheritdoc}
      */
+    public function getPosition()
+    {
+        if (-1 === $this->depth) {
+            return null;
+        }
+
+        return $this->positions[$this->depth][end($this->names)];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function push($name)
     {
         $this->depth++;

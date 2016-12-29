@@ -56,6 +56,13 @@ class NodeTest extends TestCase
     private $node;
 
     /**
+     * The position of the node relative to its siblings.
+     *
+     * @var integer
+     */
+    private $position = 3;
+
+    /**
      * The namespace prefix.
      *
      * @var string
@@ -350,6 +357,18 @@ class NodeTest extends TestCase
     }
 
     /**
+     * Verify that the position of the node is returned.
+     */
+    public function testGetThePositionOfTheNode()
+    {
+        self::assertEquals(
+            $this->position,
+            $this->node->getPosition(),
+            'The position of the node was not returned.'
+        );
+    }
+
+    /**
      * Verify that the namespace prefix is returned.
      */
     public function testGetTheNamespacePrefix()
@@ -382,6 +401,7 @@ class NodeTest extends TestCase
             NodeInterface::TYPE_ELEMENT,
             $this->localName,
             $this->value,
+            $this->position,
             $this->depth,
             $this->language,
             null,
@@ -434,6 +454,7 @@ class NodeTest extends TestCase
             $type,
             $this->localName,
             $this->value,
+            $this->position,
             $this->depth,
             $this->language,
             $this->prefix,
@@ -453,6 +474,7 @@ class NodeTest extends TestCase
             NodeInterface::TYPE_ELEMENT,
             $this->localName,
             $this->value,
+            $this->position,
             $this->depth,
             $this->language,
             $this->prefix,

@@ -4,6 +4,7 @@ namespace KHerGe\XML\Node;
 
 use KHerGe\XML\Exception\Node\Builder\MissingDepthException;
 use KHerGe\XML\Exception\Node\Builder\MissingLocalNameException;
+use KHerGe\XML\Exception\Node\Builder\MissingPositionException;
 use KHerGe\XML\Exception\Node\Builder\MissingPrefixException;
 use KHerGe\XML\Exception\Node\Builder\MissingTypeException;
 use KHerGe\XML\Exception\Node\Builder\MissingURIException;
@@ -42,6 +43,13 @@ class NodeBuilder implements NodeBuilderInterface
      * @var null|string
      */
     private $localName;
+
+    /**
+     * The position of the node relative to its siblings.
+     *
+     * @var integer
+     */
+    private $position;
 
     /**
      * The namespace prefix of the node.
@@ -86,6 +94,12 @@ class NodeBuilder implements NodeBuilderInterface
             );
         }
 
+        if (null === $this->position) {
+            throw new MissingPositionException(
+                'The position of the node relative to its siblings was not set.'
+            );
+        }
+
         if ((null !== $this->uri) && (null === $this->prefix)) {
             throw new MissingPrefixException(
                 'The namespace URI is set, but the prefix is not set for the node.'
@@ -106,6 +120,7 @@ class NodeBuilder implements NodeBuilderInterface
             $this->type,
             $this->localName,
             $this->value,
+            $this->position,
             $this->depth,
             $this->language,
             $this->prefix,
@@ -160,6 +175,16 @@ class NodeBuilder implements NodeBuilderInterface
     public function setLocalName($name)
     {
         $this->localName = $name;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
 
         return $this;
     }

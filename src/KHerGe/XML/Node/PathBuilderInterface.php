@@ -27,6 +27,19 @@ interface PathBuilderInterface
     public function getPath();
 
     /**
+     * Returns the position of the current node.
+     *
+     * If the path builder does contain any nodes, `null` is returned.
+     *
+     * ```php
+     * $position = $builder->getPosition();
+     * ```
+     *
+     * @return integer|null The position of the current node.
+     */
+    public function getPosition();
+
+    /**
      * Pushes the name of the current node to the stack.
      *
      * ```php
