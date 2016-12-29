@@ -1,0 +1,50 @@
+{
+    "type": "library",
+    "name": "kherge/xml",
+    "description": "Providers a developer friendly way of accessing nodes in very large XML documents.",
+    "keywords": ["document", "node", "xml"],
+    "license": [
+        "MIT",
+        "Apache-2.0"
+    ],
+    "support": {
+        "issues": "https://github.com/kherge/xml/issues",
+        "source": "https://github.com/kherge/xml"
+    },
+
+    "authors": [
+        {
+            "name": "Kevin Herrera",
+            "email": "kevin@herrera.io",
+            "homepage": "http://kevin.herrera.io/",
+            "role": "Developer"
+        }
+    ],
+
+    "autoload": {
+        "files": [
+            "src/KHerGe/XML/functions.php"
+        ],
+        "psr-4": {
+            "KHerGe\\XML\\": "src/KHerGe/XML"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\KHerGe\\XML\\": "tests/KHerGe/XML"
+        }
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
+    },
+
+    "require": {
+        "php": ">=5.6",
+
+        "ext-libxml": "*"
+    }
+}
