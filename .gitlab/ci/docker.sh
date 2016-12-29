@@ -36,7 +36,7 @@ buffer apt-get install git zlib1g-dev -yqq
 buffer docker-php-ext-install zip
 
 # Install Composer.
-buffer curl -LSs https://getcomposer.org/installer | php
+curl -LSs https://getcomposer.org/installer | php
 
 # Add Composer executables to the path.
 export PATH="$HOME/.composer/vendor/bin:$PATH"
