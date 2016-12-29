@@ -188,12 +188,12 @@ interface NodeInterface
      * Returns the local name of the node.
      *
      * ```php
-     * $name = $node->getName();
+     * $name = $node->getLocalName();
      * ```
      *
-     * @return string The name.
+     * @return string The local name.
      */
-    public function getName();
+    public function getLocalName();
 
     /**
      * Returns the prefix for the namespace.

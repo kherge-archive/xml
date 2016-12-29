@@ -37,7 +37,7 @@ class Node implements NodeInterface
      *
      * @var string
      */
-    private $name;
+    private $localName;
 
     /**
      * The namespace prefix.
@@ -92,7 +92,7 @@ class Node implements NodeInterface
         $this->attributes = $attributes;
         $this->depth = $depth;
         $this->language = $language;
-        $this->name = $name;
+        $this->localName = $name;
         $this->prefix = $prefix;
         $this->type = $type;
         $this->uri = $uri;
@@ -141,9 +141,9 @@ class Node implements NodeInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getLocalName()
     {
-        return $this->name;
+        return $this->localName;
     }
 
     /**
@@ -160,10 +160,10 @@ class Node implements NodeInterface
     public function getQualifiedName()
     {
         if (null === $this->prefix) {
-            return $this->name;
+            return $this->localName;
         }
 
-        return $this->prefix . ':' . $this->name;
+        return $this->prefix . ':' . $this->localName;
     }
 
     /**

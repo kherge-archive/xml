@@ -46,7 +46,7 @@ class NodeTest extends TestCase
      *
      * @var string
      */
-    private $name = 'test';
+    private $localName = 'test';
 
     /**
      * The node representation.
@@ -343,8 +343,8 @@ class NodeTest extends TestCase
     public function testGetTheLocalNameOfTheNode()
     {
         self::assertEquals(
-            $this->name,
-            $this->node->getName(),
+            $this->localName,
+            $this->node->getLocalName(),
             'The local name was not returned.'
         );
     }
@@ -367,7 +367,7 @@ class NodeTest extends TestCase
     public function testGetTheQualifiedNameOfTheNode()
     {
         self::assertEquals(
-            $this->prefix . ':' . $this->name,
+            $this->prefix . ':' . $this->localName,
             $this->node->getQualifiedName(),
             'The qualified name was not returned.'
         );
@@ -380,7 +380,7 @@ class NodeTest extends TestCase
     {
         $this->node = new Node(
             NodeInterface::TYPE_ELEMENT,
-            $this->name,
+            $this->localName,
             $this->value,
             $this->depth,
             $this->language,
@@ -390,7 +390,7 @@ class NodeTest extends TestCase
         );
 
         self::assertEquals(
-            $this->name,
+            $this->localName,
             $this->node->getQualifiedName(),
             'The local name was not returned.'
         );
@@ -432,7 +432,7 @@ class NodeTest extends TestCase
     {
         $this->node = new Node(
             $type,
-            $this->name,
+            $this->localName,
             $this->value,
             $this->depth,
             $this->language,
@@ -451,7 +451,7 @@ class NodeTest extends TestCase
     {
         $this->node = new Node(
             NodeInterface::TYPE_ELEMENT,
-            $this->name,
+            $this->localName,
             $this->value,
             $this->depth,
             $this->language,
