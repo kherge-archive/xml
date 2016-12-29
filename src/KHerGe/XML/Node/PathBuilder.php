@@ -45,7 +45,7 @@ class PathBuilder implements PathBuilderInterface
             }
         }
 
-        return $path;
+        return ('' === $path) ? '/' : $path;
     }
 
     /**
@@ -65,11 +65,13 @@ class PathBuilder implements PathBuilderInterface
      */
     public function pop()
     {
-        $this->dropChildren();
+        if (-1 !== $this->depth) {
+            $this->dropChildren();
 
-        $this->depth--;
+            $this->depth--;
 
-        array_pop($this->names);
+            array_pop($this->names);
+        }
     }
 
     /**

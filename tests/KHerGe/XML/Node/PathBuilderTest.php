@@ -31,6 +31,23 @@ class PathBuilderTest extends TestCase
         return [
 
             [
+                '/',
+                function (PathBuilder $builder) {
+                    $builder->pop();
+                }
+            ],
+
+            [
+                '/root[2]',
+                function (PathBuilder $builder) {
+                    $builder->push('root');
+                    $builder->pop();
+                    $builder->pop();
+                    $builder->push('root');
+                }
+            ],
+
+            [
                 '/root',
                 function (PathBuilder $builder) {
                     $builder->push('root');
