@@ -357,6 +357,17 @@ class NodeTest extends TestCase
     }
 
     /**
+     * Verify that the attribute is checked for its existence.
+     */
+    public function testCheckIfAnAttributeExists()
+    {
+        self::assertTrue(
+            $this->node->hasAttribute('c'),
+            'The node should have the attribute.'
+        );
+    }
+
+    /**
      * Verify that the position of the node is returned.
      */
     public function testGetThePositionOfTheNode()

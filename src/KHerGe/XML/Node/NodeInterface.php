@@ -247,6 +247,21 @@ interface NodeInterface
     public function getValue();
 
     /**
+     * Checks if the node has an attribute.
+     *
+     * ```php
+     * if ($node->hasAttribute()) {
+     *     // ...
+     * }
+     * ```
+     *
+     * @param string $name The name of the attribute.
+     *
+     * @return boolean Returns `true` if it has the attribute, `false` if not.
+     */
+    public function hasAttribute($name);
+
+    /**
      * Checks if this node is an attribute.
      *
      * ```php

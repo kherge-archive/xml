@@ -203,6 +203,14 @@ class Node implements NodeInterface
     /**
      * {@inheritdoc}
      */
+    public function hasAttribute($name)
+    {
+        return array_key_exists($name, $this->attributes);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function isAttribute()
     {
         return (0 !== (self::TYPE_ATTRIBUTE & $this->type));
