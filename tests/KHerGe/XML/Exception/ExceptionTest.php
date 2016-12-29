@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\KHerGe\File\Exception;
+namespace Test\KHerGe\XML\Exception;
 
 use KHerGe\XML\Exception\Exception;
 use PHPUnit_Framework_TestCase as TestCase;
