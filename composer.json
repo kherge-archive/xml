@@ -22,9 +22,6 @@
     ],
 
     "autoload": {
-        "files": [
-            "src/KHerGe/XML/functions.php"
-        ],
         "psr-4": {
             "KHerGe\\XML\\": "src/KHerGe/XML"
         }
