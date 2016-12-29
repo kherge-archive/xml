@@ -15,7 +15,7 @@ use function KHerGe\File\temp_file;
  *
  * @author Kevin Herrera <kevin@herrera.io>
  *
- * @coveres \KHerGe\XML\FileReader
+ * @covers \KHerGe\XML\FileReader
  */
 class FileReaderTest extends TestCase
 {
