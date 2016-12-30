@@ -873,10 +873,17 @@ class AbstractReaderTest extends TestCase
     public function testThrowAnExceptionWhenXmlReaderIsNotSet()
     {
         /** @var AbstractReader|MockObject $reader */
-        $reader = $this->createPartialMock(
-            AbstractReader::class,
-            ['reset']
-        );
+        $reader = $this
+            ->getMockBuilder(AbstractReader::class)
+            ->setConstructorArgs(
+                [
+                    new PathBuilderFactory(),
+                    new NodeBuilderFactory()
+                ]
+            )
+            ->setMethods(['reset'])
+            ->getMockForAbstractClass()
+        ;
 
         $this->expectException(MissingInternalReaderException::class);
 

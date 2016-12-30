@@ -88,17 +88,19 @@ abstract class AbstractReader implements ReaderInterface
      */
     public function current()
     {
+        $reader = $this->getReader();
+
         return $this
             ->nodeBuilderFactory
             ->createBuilder()
             ->setAttributes($this->readAttributes())
-            ->setDepth($this->reader->depth)
-            ->setLanguage($this->valueOrNull($this->reader->xmlLang))
-            ->setLocalName($this->reader->localName)
+            ->setDepth($reader->depth)
+            ->setLanguage($this->valueOrNull($reader->xmlLang))
+            ->setLocalName($reader->localName)
             ->setPosition($this->pathBuilder->getPosition())
-            ->setPrefix($this->valueOrNull($this->reader->prefix))
+            ->setPrefix($this->valueOrNull($reader->prefix))
             ->setType($this->readType())
-            ->setURI($this->valueOrNull($this->reader->namespaceURI))
+            ->setURI($this->valueOrNull($reader->namespaceURI))
             ->setValue($this->readValue())
             ->build()
         ;
@@ -117,11 +119,13 @@ abstract class AbstractReader implements ReaderInterface
      */
     public function next()
     {
-        switch ($this->reader->nodeType) {
+        $reader = $this->getReader();
+
+        switch ($reader->nodeType) {
             case XMLReader::ELEMENT:
             /** @noinspection PhpMissingBreakStatementInspection */
             case XMLReader::ENTITY:
-                if (!$this->reader->isEmptyElement) {
+                if (!$reader->isEmptyElement) {
                     break;
                 }
 
@@ -129,14 +133,14 @@ abstract class AbstractReader implements ReaderInterface
                 $this->pathBuilder->pop();
         }
 
-        if ($this->reader->read()) {
-            switch ($this->reader->nodeType) {
+        if ($reader->read()) {
+            switch ($reader->nodeType) {
                 case XMLReader::END_ELEMENT:
                 case XMLReader::END_ENTITY:
                     break;
 
                 default:
-                    $this->pathBuilder->push($this->reader->name);
+                    $this->pathBuilder->push($reader->name);
             }
         }
     }
@@ -148,12 +152,6 @@ abstract class AbstractReader implements ReaderInterface
     {
         $this->reset();
 
-        if (null === $this->reader) {
-            throw new MissingInternalReaderException(
-                'The `XMLReader` instance has not been set.'
-            );
-        }
-
         $this->pathBuilder = $this->pathBuilderFactory->createBuilder();
 
         $this->next();
@@ -164,7 +162,7 @@ abstract class AbstractReader implements ReaderInterface
      */
     public function valid()
     {
-        return (XMLReader::NONE !== $this->reader->nodeType);
+        return (XMLReader::NONE !== $this->getReader()->nodeType);
     }
 
     /**
@@ -194,6 +192,24 @@ abstract class AbstractReader implements ReaderInterface
     protected function setReader(XMLReader $reader)
     {
         $this->reader = $reader;
+    }
+
+    /**
+     * Returns the XML reader.
+     *
+     * @return XMLReader The XML reader.
+     *
+     * @throws MissingInternalReaderException If the reader is not set.
+     */
+    private function getReader()
+    {
+        if (null === $this->reader) {
+            throw new MissingInternalReaderException(
+                'The `XMLReader` instance has not been set.'
+            );
+        }
+
+        return $this->reader;
     }
 
     /**
