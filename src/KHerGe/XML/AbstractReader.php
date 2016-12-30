@@ -2,6 +2,7 @@
 
 namespace KHerGe\XML;
 
+use KHerGe\XML\Exception\Reader\MissingInternalReaderException;
 use KHerGe\XML\Node\NodeBuilderFactoryInterface;
 use KHerGe\XML\Node\NodeInterface;
 use KHerGe\XML\Node\PathBuilderFactoryInterface;
@@ -146,6 +147,12 @@ abstract class AbstractReader implements ReaderInterface
     public function rewind()
     {
         $this->reset();
+
+        if (null === $this->reader) {
+            throw new MissingInternalReaderException(
+                'The `XMLReader` instance has not been set.'
+            );
+        }
 
         $this->pathBuilder = $this->pathBuilderFactory->createBuilder();
 

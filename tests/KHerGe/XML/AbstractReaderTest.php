@@ -3,9 +3,11 @@
 namespace Test\KHerGe\XML;
 
 use KHerGe\XML\AbstractReader;
+use KHerGe\XML\Exception\Reader\MissingInternalReaderException;
 use KHerGe\XML\Node\NodeBuilderFactory;
 use KHerGe\XML\Node\NodeInterface;
 use KHerGe\XML\Node\PathBuilderFactory;
+use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use PHPUnit_Framework_TestCase as TestCase;
 use XMLReader;
 
@@ -863,6 +865,22 @@ class AbstractReaderTest extends TestCase
         );
 
         $assertions(self::$reader->current());
+    }
+
+    /**
+     * Verify that an exception is thrown when the `XMLReader` is not set.
+     */
+    public function testThrowAnExceptionWhenXmlReaderIsNotSet()
+    {
+        /** @var AbstractReader|MockObject $reader */
+        $reader = $this->createPartialMock(
+            AbstractReader::class,
+            ['reset']
+        );
+
+        $this->expectException(MissingInternalReaderException::class);
+
+        $reader->rewind();
     }
 
     /**
