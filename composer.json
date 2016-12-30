@@ -1,7 +1,7 @@
 {
     "type": "library",
     "name": "kherge/xml",
-    "description": "Providers a developer friendly way of accessing nodes in very large XML documents.",
+    "description": "Provides a friendly way of accessing nodes in very large XML documents.",
     "keywords": ["document", "node", "xml"],
     "license": [
         "MIT",
