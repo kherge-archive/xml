@@ -11,6 +11,7 @@ use PHPUnit_Framework_TestCase as TestCase;
  *
  * @author Kevin Herrera <kevin@herrera.io>
  *
+ * @covers \KHerGe\XML\AbstractReaderFactory
  * @covers \KHerGe\XML\FileReaderFactory
  */
 class FileReaderFactoryTest extends TestCase
