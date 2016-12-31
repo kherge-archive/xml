@@ -17,11 +17,25 @@ use XMLReader;
 abstract class AbstractReader implements ReaderInterface
 {
     /**
+     * The current node representation.
+     *
+     * @var NodeInterface|null
+     */
+    private $node;
+
+    /**
      * The node builder factory.
      *
      * @var NodeBuilderFactoryInterface
      */
     private $nodeBuilderFactory;
+
+    /**
+     * The current path to the node.
+     *
+     * @var null|string
+     */
+    private $path;
 
     /**
      * The node path builder.
@@ -88,22 +102,7 @@ abstract class AbstractReader implements ReaderInterface
      */
     public function current()
     {
-        $reader = $this->getReader();
-
-        return $this
-            ->nodeBuilderFactory
-            ->createBuilder()
-            ->setAttributes($this->readAttributes())
-            ->setDepth($reader->depth)
-            ->setLanguage($this->valueOrNull($reader->xmlLang))
-            ->setLocalName($reader->localName)
-            ->setPosition($this->pathBuilder->getPosition())
-            ->setPrefix($this->valueOrNull($reader->prefix))
-            ->setType($this->readType())
-            ->setURI($this->valueOrNull($reader->namespaceURI))
-            ->setValue($this->readValue())
-            ->build()
-        ;
+        return $this->node;
     }
 
     /**
@@ -111,7 +110,7 @@ abstract class AbstractReader implements ReaderInterface
      */
     public function key()
     {
-        return $this->pathBuilder->getPath();
+        return $this->path;
     }
 
     /**
@@ -142,6 +141,22 @@ abstract class AbstractReader implements ReaderInterface
                 default:
                     $this->pathBuilder->push($reader->name);
             }
+
+            $this->path = $this->pathBuilder->getPath();
+            $this->node = $this
+                ->nodeBuilderFactory
+                ->createBuilder()
+                ->setAttributes($this->readAttributes())
+                ->setDepth($reader->depth)
+                ->setLanguage($this->valueOrNull($reader->xmlLang))
+                ->setLocalName($reader->localName)
+                ->setPosition($this->pathBuilder->getPosition())
+                ->setPrefix($this->valueOrNull($reader->prefix))
+                ->setType($this->readType())
+                ->setURI($this->valueOrNull($reader->namespaceURI))
+                ->setValue($this->readValue())
+                ->build()
+            ;
         }
     }
 
