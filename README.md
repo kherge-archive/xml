@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/kherge-php/xml.svg?branch=master)](https://travis-ci.org/kherge-php/xml)
+[![Packagist](https://img.shields.io/packagist/v/kherge/xml.svg)]()
+[![Packagist Pre Release](https://img.shields.io/packagist/vpre/kherge/xml.svg)]()
+
 XML
 ===
 
